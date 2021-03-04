@@ -4,9 +4,9 @@ from django.db import models
 class Product(models.Model):
 
     CATEGORY_CHOICE = [
-        ("men's watches", "мужские часы"),
-        ("ladies watches", "женские часы"),
-        ("watches for couples", "парные часы"),
+        ("men's_watches", "мужские часы"),
+        ("ladies_watches", "женские часы"),
+        ("couples'_watches", "парные часы"),
         ("other", "разное"),
     ]
 
