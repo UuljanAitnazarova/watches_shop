@@ -10,10 +10,20 @@
     <title>Document</title>
 </head>
 <body>
-    {% block page_header %}{% endblock page_header %}
+    <nav class="navbar">
+        <ul class="menu">
+            <li><a href='{% url "product_list" %}'>Главная</a></li>
+            {% block nav %}{% endblock nav %}
+        </ul>
+      </nav>
+      
+    <div class='container'>
+        {% block page_header %}{% endblock page_header %}
 
         {% block content %}
         {% endblock content %}
+    </div>
+
 
 </body>
 </html>

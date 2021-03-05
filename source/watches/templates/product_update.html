@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block nav %}<li><a href='{% url "product_detail" product.id %}'>Вернуться к просмотру продукта</a></li>{% endblock nav %}
+
+{% block page_header %}Редактирование часов "{{product.name}}"{% endblock page_header %}
+
 {% block content %}
 <form action="{% url 'product_update' product.id %}" method='post'>
     {% include 'product_form.html' with button_text='Обновить продукт' %}

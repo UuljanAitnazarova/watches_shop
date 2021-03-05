@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
+{% block nav %}
+<li><a href='{% url "product_create" %}'>Добавить новый продукт</a></li>
+<li><a href='{% url "product_update" product.id %}'>Редактировать продукт</a></li>
+<li><a href='{% url "product_delete" product.id %}'>Удалить продукт</a></li>
+{% endblock nav %}
+
 {% block page_header %}<h2>{{ product.name }}</h2>{% endblock page_header %}
 
 {% block content %}
