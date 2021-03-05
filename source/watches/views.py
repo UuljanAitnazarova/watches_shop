@@ -8,7 +8,7 @@ def product_list_view(request):
     if request.GET.get('search_field'):
         products = Product.objects.filter(name__contains=request.GET.get('search_field'))
     else:
-        products = Product.objects.all()
+        products = Product.objects.order_by('category', 'name')
     return render(request, 'product_list.html', context={'products': products})
 
 
