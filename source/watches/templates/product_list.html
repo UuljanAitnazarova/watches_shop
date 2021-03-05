@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block page_header %} <h1>Часы Romanoff </h1>{% endblock page_header%}
+
+
+
+
+{% block content %}
+{% for product in products %}
+    {% if product.product_availability >= 1 %}
+        <h5>Наименование: <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></h5>
+        <p>Категория: {{ product.get_category_display }}</p>
+        <p>Cтоимость: {{ product.price }}</p>
+    {% endif %}
+
+
+{% endfor %}
+{% endblock %}
