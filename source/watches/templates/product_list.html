@@ -1,11 +1,18 @@
 {% extends 'base.html' %}
 
-{% block page_header %} <h1>Часы Romanoff </h1>{% endblock page_header%}
+{% block page_header %} <h1 class='main-page-header'>Часы Romanoff </h1>{% endblock page_header%}
 
 
 
 
 {% block content %}
+
+<form action="" mrthod='get'>
+    <label for="">Поиск по названию</label>
+    <input type="text" name="search_field">
+</form>
+
+
 {% for product in products %}
     {% if product.product_availability >= 1 %}
         <h5>Наименование: <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></h5>

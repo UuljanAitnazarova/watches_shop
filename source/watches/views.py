@@ -4,8 +4,11 @@ from .models import Product
 from .forms import ProductForm
 
 
-def product_list_view(request):
-    products = Product.objects.all()
+def product_list_view(request): 
+    if request.GET.get('search_field'):
+        products = Product.objects.filter(name__contains=request.GET.get('search_field'))
+    else:
+        products = Product.objects.all()
     return render(request, 'product_list.html', context={'products': products})
 
 
@@ -29,7 +32,7 @@ def product_create_view(request):
                 price = form.cleaned_data.get('price')
             )
             return redirect('product_detail', pk=product.id)
-        return render(request, 'product_create', context={'form':form})
+        return render(request, 'product_create.html', context={'form':form})
 
 
 def product_update_view(request, pk):
@@ -64,3 +67,5 @@ def product_delete_view(request, pk):
     elif request.method ==  'POST':
         product.delete()
         return redirect('product_list')
+
+
