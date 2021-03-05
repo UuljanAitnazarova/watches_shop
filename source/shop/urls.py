@@ -15,8 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import RedirectView
+
+
+HOMEPAGE_URL = 'watches/'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('watches.urls')),
+    path('watches/', include('watches.urls')),
+    path('', RedirectView.as_view(url=HOMEPAGE_URL, permanent=True))
 ]
