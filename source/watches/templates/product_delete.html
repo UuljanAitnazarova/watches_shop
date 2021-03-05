@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block page_header %}Удалить продукт {{ product.name }} {% endblock page_header %}
+
+{% block content %}
+<form action="" method='post'>
+    {% csrf_token %}
+    <h3>Вы точно хотите удалить этот продукт? </h3>
+    <input type="submit" value='удалить'>
+</form>
+<p><a href="{% url 'product_list' %}">Отмена</a></p>
+{% endblock content %}
