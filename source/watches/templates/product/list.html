@@ -17,17 +17,18 @@
 
 <form action="" method='get'>
     <label for="">Поиск по названию</label>
-    <input type="text" name="search_field">
+    {% include 'partial/search_form.html' %}
 </form>
 
 
 {% for product in products %}
-    {% if product.product_availability >= 1 %}
-        <h5>Наименование: <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></h5>
+    <h5>Наименование: <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></h5>
         <p>Категория: {{ product.get_category_display }}</p>
         <p>Cтоимость: {{ product.price }}</p>
-    {% endif %}
 
 
 {% endfor %}
+        {% if is_paginated %}
+    {% include 'partial/pagination.html' %}
+    {% endif %}
 {% endblock %}

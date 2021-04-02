@@ -5,7 +5,7 @@
 
 {% block content %}
     <form action="{% url 'product_create' %}" method="post">
-        {% include "product_form.html" with button_text="Добавить новый продукт" %}
+        {% include "partial/form.html" with button_text="Добавить новый продукт" %}
     </form>
 
 {% endblock content %}
