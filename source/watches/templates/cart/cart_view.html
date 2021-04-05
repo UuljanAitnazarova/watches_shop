@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Продукт</th>
+      <th scope="col">Количество</th>
+      <th scope="col">Стоимость</th>
+        <th scope="col">Сумма</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for item in product_sum %}
+    <tr>
+      <th scope="row"></th>
+          <td>{{ item.item.product }}</td>
+          <td>{{ item.item.units }}</td>
+          <td>{{ item.item.product.price }}</td>
+            <td>{{ item.total }}</td>
+        <td>
+            <form action="{% url 'remove_cart' item.item.pk %}" method='post'>
+                {% csrf_token %}
+                <input type="submit" value='Удалить'>
+            </form>
+        </td>>
+    </tr>
+        {% endfor %}
+
+</div>
+<h4>Total: {{ total }}</h4>
+
+{% endblock %}

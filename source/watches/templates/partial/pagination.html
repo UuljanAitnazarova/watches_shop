@@ -1,8 +1,8 @@
 <div class="pagination mx-auto">
     <span class="step-links mx-auto">
         {% if page_obj.has_previous %}
-            <a href="?{% if query %}{{ query }}&{% endif %}page=1">&laquo; Beginning</a>
-            <a href="?{% if query %}{{ query }}&{% endif %}page={{ page_obj.previous_page_number }}">Back</a>
+            <a href="?{% if query %}{{ query }}&{% endif %}page=1">&laquo;В начало</a>
+            <a href="?{% if query %}{{ query }}&{% endif %}page={{ page_obj.previous_page_number }}">Назад</a>
         {% else %}
             <span class="page-disabled">&laquo; Beginning</span>
             <span class="page-disabled">Back</span>
@@ -15,8 +15,8 @@
             </label>
         </form>
         {% if page_obj.has_next %}
-            <a href="?{% if query %}{{ query }}&{% endif %}page={{ page_obj.next_page_number }}">Forward</a>
-            <a href="?{% if query %}{{ query }}&{% endif %}page={{ paginator.num_pages }}">Last page &raquo;</a>
+            <a href="?{% if query %}{{ query }}&{% endif %}page={{ page_obj.next_page_number }}">Вперед</a>
+            <a href="?{% if query %}{{ query }}&{% endif %}page={{ paginator.num_pages }}">Последняя &raquo;</a>
         {% else %}
             <span class="page-disabled">Forward</span>
             <span class="page-disabled">Last page &raquo;</span>

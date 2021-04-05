@@ -1,33 +1,35 @@
 {% extends 'base.html' %}
 
 
-{% block nav %}<li ><a href='{% url "product_create" %}'>Добавить новый продукт</a></li>{% endblock nav %}
-
-
-{% block page_header %} <h1 class='main-page-header'>Часы Romanoff </h1>{% endblock page_header%}
+{% block nav %}
+    <li class="nav-item"><a class="nav-link" href="{% url "product_create" %}">Добавить новый продукт</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url "cart" %}">Корзина</a></li>
+{% endblock nav %}
 
 
 
 {% block content %}
 
-{% for code, value in choices %}
-    <a href="watches/{{code}}">{{ value}}</a>
-    <br/>
-{% endfor %}
 
-<form action="" method='get'>
-    <label for="">Поиск по названию</label>
-    {% include 'partial/search_form.html' %}
-</form>
-
-
-{% for product in products %}
-    <h5>Наименование: <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></h5>
-        <p>Категория: {{ product.get_category_display }}</p>
-        <p>Cтоимость: {{ product.price }}</p>
-
-
-{% endfor %}
+    <div class="container">
+        <div class="row" style="margin-top: 30px">
+            {% for product in products %}
+                <div class="col-lg-3 mb-4">
+                    <div class="card h-100" >
+                    <img src="http://www.jaipuriaschoolpadrauna.in/wp-content/uploads/2016/11/blank-img.jpg">
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-decoration: none; "><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></h5>
+                        <p class="card-text">Категория: {{ product.get_category_display }}</p>
+                        <p>Cтоимость: {{ product.price }}</p>
+                    </div>
+                        <div class="card-footer">
+                            <a href="{% url 'add_cart' product.pk %}" class="btn btn-secondary">В корзину</a>
+                        </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
         {% if is_paginated %}
     {% include 'partial/pagination.html' %}
     {% endif %}

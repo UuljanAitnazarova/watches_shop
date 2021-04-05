@@ -4,14 +4,14 @@ from django.urls import reverse
 from django.db.models import Q
 from django.utils.http import urlencode
 
-from .models import Product
-from .forms import ProductForm, SearchForm
+from watches.models import Product
+from watches.forms import ProductForm, SearchForm
 
 
 class ProductListView(ListView):
     template_name = 'product/list.html'
     context_object_name = 'products'
-    paginate_by = 5
+    paginate_by = 4
     paginate_orphans = 1
 
     def get(self, request, **kwargs):
@@ -141,12 +141,12 @@ class ProductDeleteView(DeleteView):
 #         return render(request, 'product/product_update.html', context={'form':form, 'product':product})
 
 
-def product_delete_view(request, pk):
-    product = get_object_or_404(Product, id=pk)
-    if request.method == 'GET':
-        return render(request, 'product/product_delete.html', context={'product':product})
-    elif request.method ==  'POST':
-        product.delete()
-        return redirect('product_list')
+# def product_delete_view(request, pk):
+#     product = get_object_or_404(Product, id=pk)
+#     if request.method == 'GET':
+#         return render(request, 'product/product_delete.html', context={'product':product})
+#     elif request.method ==  'POST':
+#         product.delete()
+#         return redirect('product_list')
 
 

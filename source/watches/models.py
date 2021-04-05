@@ -20,4 +20,13 @@ class Product(models.Model):
 
 
     def __str__(self):
-        return self.name 
+        return self.name
+
+
+class ProductCart(models.Model):
+    product = models.ForeignKey('watches.Product', related_name='productcart', on_delete=models.CASCADE)
+    units = models.IntegerField(verbose_name='Количество')
+
+    def __str__(self):
+        return self.product
+

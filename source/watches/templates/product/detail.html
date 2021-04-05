@@ -1,20 +1,31 @@
 {% extends 'base.html' %}
 
 {% block nav %}
-<li ><a href='{% url "product_create" %}'>Добавить новый продукт</a></li>
-<li ><a href='{% url "product_update" product.id %}'>Редактировать продукт</a></li>
-<li ><a href='{% url "product_delete" product.id %}'>Удалить продукт</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url "product_update" product.id %}">Редактировать продукт</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url "product_delete" product.id %}">Удалить продукт</a></li>
 {% endblock nav %}
 
 {% block page_header %}<h2>{{ product.name }}</h2>{% endblock page_header %}
 
 {% block content %}
-<h5>{{ product.price }}</h5>
-<p>{{ product.get_category_display }}</p>
-<p>{{ product.product_availability }}</p>
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p >{{ product.description }}</p>
+                    <p class="card-text"> {{ product.price }}</p>
+                    {{ product.product_availability }}
+                    <p class="card-text"><small class="text-muted">{{ product.get_category_display }}</small></p>
+                    <a href="{% url 'add_cart' product.pk %}" class="btn btn-secondary">В корзину</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <br/>
-<p>{{ product.description }}</p>
-
-
 {% endblock content %}
 
