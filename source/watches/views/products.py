@@ -20,7 +20,7 @@ class ProductListView(ListView):
         return super(ProductListView, self).get(request, **kwargs)
 
     def get_queryset(self):
-        queryset = Product.objects.filter(product_availability__gt=0)
+        queryset = Product.objects.filter(product_availability__gt=0).order_by('category', 'name')
 
         if self.search_data:
             queryset = queryset.filter(
@@ -49,6 +49,7 @@ class ProductDetailView(DetailView):
     template_name = 'product/detail.html'
     context_object_name = 'product'
 
+
 class ProductCreateView(CreateView):
     model = Product
     template_name = 'product/create.html'
@@ -56,6 +57,7 @@ class ProductCreateView(CreateView):
 
     def get_success_url(self):
         return reverse('product_list')
+
 
 class ProductUpdateView(UpdateView):
     model = Product
