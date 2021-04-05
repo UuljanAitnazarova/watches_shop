@@ -2,7 +2,8 @@ from django.shortcuts import redirect, get_object_or_404
 from django.views import View
 from django.views.generic import ListView
 
-from watches.models import Product, ProductCart
+from watches.models import Product, ProductCart, Order, ProductOrder
+from watches.forms import OrderForm
 
 
 class ProductAddCart(View):
@@ -49,9 +50,25 @@ class CartListView(ListView):
             context['product_sum'].append({'item': item, "total": product_sum})
             total += product_sum
         context['total'] = total
+        context['form'] = OrderForm()
 
         return context
 
+class RegisterOrderView(View):
+    def post(self, request, *args, **kwargs):
+        form = OrderForm(data=request.POST)
+        if form.is_valid():
+            self.order = form.save()
+            self.makeorder()
+            return redirect('product_list')
+        return redirect('cart')
+
+
+
+    def makeorder(self):
+        for cart in ProductCart.objects.all():
+            ProductOrder.objects.create(product_id=cart.product, order_id=self.order, units=cart.units)
+        ProductCart.objects.all().delete()
 
 
 

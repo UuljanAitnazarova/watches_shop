@@ -11,4 +11,5 @@ from watches.views.cart import (
                     ProductAddCart,
                     CartListView,
                     ProductRemoveCart,
+                    RegisterOrderView
 )

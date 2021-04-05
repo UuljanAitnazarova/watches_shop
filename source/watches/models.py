@@ -30,3 +30,19 @@ class ProductCart(models.Model):
     def __str__(self):
         return self.product
 
+
+class Order(models.Model):
+    username = models.CharField(max_length=150, blank=False, null=False, verbose_name='Имя пользователя')
+    phone_number = models.CharField(max_length=15, blank=False, null=False, verbose_name='Номер телефона')
+    address = models.CharField(max_length=250, blank=False, null=False, verbose_name='Адрес')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время создания')
+
+    def __str__(self):
+        return f'id: {self.pk} - username:{self.username}'
+
+
+class ProductOrder(models.Model):
+    product_id = models.ForeignKey('watches.Product', related_name='product_orders', on_delete=models.CASCADE)
+    order_id = models.ForeignKey('watches.Order', related_name='product_orders', on_delete=models.CASCADE)
+    units = models.IntegerField(verbose_name='Количество')
+
