@@ -1,10 +1,34 @@
 [
 {
+  "model": "auth.group",
+  "pk": 1,
+  "fields": {
+    "name": "Moderators",
+    "permissions": [
+      [
+        "add_product",
+        "watches",
+        "product"
+      ],
+      [
+        "change_product",
+        "watches",
+        "product"
+      ],
+      [
+        "delete_product",
+        "watches",
+        "product"
+      ]
+    ]
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$216000$tmiZiW8ngM5b$ZVerJwkQ/ciKIkJdpghY6FGFpMQ5EOHf9J6bUljQW+k=",
-    "last_login": "2021-03-04T14:03:18.328Z",
+    "last_login": "2021-04-26T11:22:15.448Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
@@ -13,6 +37,46 @@
     "is_staff": true,
     "is_active": true,
     "date_joined": "2021-03-04T14:03:00.142Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$w705bEMABgII$TgRK5rfZgjNjVEN4NrKUIvV1XRUXDvYyWYxLdcTYYPg=",
+    "last_login": "2021-04-26T11:21:01.729Z",
+    "is_superuser": false,
+    "username": "user",
+    "first_name": "user",
+    "last_name": "",
+    "email": "u.aitnazarova@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-04-23T09:15:43Z",
+    "groups": [
+      [
+        "Moderators"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$H0puslB140on$Zyse3MLAqX4PGpFvEhKqJquX5cS2wYUOOKhGAiY55Rs=",
+    "last_login": "2021-04-26T11:20:10.093Z",
+    "is_superuser": false,
+    "username": "test",
+    "first_name": "test",
+    "last_name": "test",
+    "email": "test@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-04-23T09:46:07.732Z",
     "groups": [],
     "user_permissions": []
   }

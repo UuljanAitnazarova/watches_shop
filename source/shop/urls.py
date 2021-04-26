@@ -22,6 +22,6 @@ HOMEPAGE_URL = 'watches/'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('watches/', include('watches.urls')),
-    path('', RedirectView.as_view(url=HOMEPAGE_URL, permanent=False))
+    path('accounts/', include('accounts.urls')),
+    path('', include('watches.urls')),
 ]

@@ -17,4 +17,4 @@ class SearchForm(forms.Form):
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ['username', 'phone_number', 'address']
+        fields = ['phone_number', 'address']

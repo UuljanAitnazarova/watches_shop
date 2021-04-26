@@ -2,8 +2,13 @@
 
 
 {% block nav %}
-    <li class="nav-item"><a class="nav-link" href="{% url "product_create" %}">Добавить новый продукт</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url "cart" %}">Корзина</a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url "cart" %}">Корзина</a></li>
+    {% if perms.watches.add_product %}
+        <li class="nav-item"><a class="nav-link" href="{% url "product_create" %}">Добавить новый продукт</a></li>
+    {% endif %}
+    {% if user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href="{% url "orders" %}">Мои заказы</a></li>
+    {% endif %}
 {% endblock nav %}
 
 

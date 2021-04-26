@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse
 from django.db.models import Q
@@ -50,27 +51,30 @@ class ProductDetailView(DetailView):
     context_object_name = 'product'
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(PermissionRequiredMixin, CreateView):
     model = Product
     template_name = 'product/create.html'
     form_class = ProductForm
+    permission_required = 'watches.add_product'
 
     def get_success_url(self):
         return reverse('product_list')
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(PermissionRequiredMixin, UpdateView):
     model = Product
     template_name = 'product/update.html'
     form_class = ProductForm
+    permission_required = 'watches.change_product'
 
     def get_success_url(self):
         return reverse('product_detail', kwargs={'pk': self.object.pk})
 
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(PermissionRequiredMixin, DeleteView):
     model = Product
     template_name = 'product/delete.html'
+    permission_required = 'watches.delete_product'
 
     def get_success_url(self):
         return reverse('product_list')

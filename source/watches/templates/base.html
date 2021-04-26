@@ -21,7 +21,15 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-               {% block nav %}{% endblock nav %}
+          {% if user.is_authenticated %}
+           {% block nav %}{% endblock nav %}
+           <li class="menu-right"><a href="{% url 'accounts:logout' %}?next={{ request.get_full_path }}" class="nav-link">Выход</a></li>
+           <li class="menu-right">{{ user.username }}!</li>
+       {% else %}
+           <li class="menu-right"><a href="{% url 'accounts:login' %}?next={{ request.get_full_path }}" class="nav-link">Вход</a></li>
+       {% endif %}
+
+
       </ul>
     <form action="" method='get'>
     {% include 'partial/search_form.html' %}

@@ -14,15 +14,15 @@
     </tr>
   </thead>
   <tbody>
-  {% for item in product_sum %}
+  {% for item in items %}
     <tr>
       <th scope="row"></th>
-          <td>{{ item.item.product }}</td>
-          <td>{{ item.item.units }}</td>
-          <td>{{ item.item.product.price }}</td>
-            <td>{{ item.total }}</td>
+          <td>{{ item.product.name }}</td>
+          <td>{{ item.count }}</td>
+          <td>{{ item.sum}}</td>
+
         <td>
-            <form action="{% url 'remove_cart' item.item.pk %}" method='post'>
+            <form action="{% url 'remove_cart' item.product.pk %}" method='post'>
                 {% csrf_token %}
                 <input type="submit" value='Удалить'>
             </form>

@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 
 {% block nav %}
+    {% if perms.watches.change_product %}
         <li class="nav-item"><a class="nav-link" href="{% url "product_update" product.id %}">Редактировать продукт</a></li>
+    {% endif %}
+    {% if perms.watches.delete_product %}
         <li class="nav-item"><a class="nav-link" href="{% url "product_delete" product.id %}">Удалить продукт</a></li>
+    {% endif%}
 {% endblock nav %}
 
 {% block page_header %}<h2>{{ product.name }}</h2>{% endblock page_header %}
