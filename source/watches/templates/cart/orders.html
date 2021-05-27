@@ -4,7 +4,11 @@
 {% block content %}
     <h2>Мои заказы </h2>
     {% for order in orders %}
-        <p>Product: {{ order.product_id.name }} | price{{ order.product_id.price }} </p>
-        <p>Units: {{ order.units }} </p>
+        <div>
+            <p>{{ order.order_id.created_at }}</p>
+            <p>Product: {{ order.product_id.name }} | price{{ order.product_id.price }} </p>
+            <p>Units: {{ order.units }} </p>
+        </div>
+
     {% endfor %}
 {% endblock content %}
