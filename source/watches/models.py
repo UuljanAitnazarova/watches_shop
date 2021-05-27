@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-from django.core.validators import MinValueValidator 
+from django.core.validators import MinValueValidator
+from django.db.models import Sum
+
 
 class Product(models.Model):
 
@@ -35,10 +37,22 @@ class Order(models.Model):
     def __str__(self):
         return f'id: {self.pk} - username:{self.username}'
 
+    @property
+    def get_total(self):
+        sum = 0
+        for i in self.product_orders.all():
+            sum += i.get_sum
+        print(sum)
+        return sum
+
 
 class ProductOrder(models.Model):
     product_id = models.ForeignKey('watches.Product', related_name='product_orders', on_delete=models.CASCADE)
     order_id = models.ForeignKey('watches.Order', related_name='product_orders', on_delete=models.CASCADE)
     units = models.IntegerField(verbose_name='Количество')
+
+    @property
+    def get_sum(self):
+        return self.units * self.product_id.price
 
 
