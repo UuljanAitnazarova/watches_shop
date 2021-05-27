@@ -34,24 +34,24 @@ class OrderSerializer(serializers.ModelSerializer):
         return order
 
 
-class BucketSerializer(serializers.ModelSerializer):
-    product_id = ProductSerializer()
-
-    class Meta:
-        model = ProductOrder
-        fields = ['id', 'units', 'product_id', 'order_id']
-        read_only_fields = ['order_id']
-
-    def create(self, validated_data):
-        print(validated_data)
-        product_id = validated_data.pop('product_id')
-        product_order = ProductOrder.objects.create(**validated_data)
-        for data in product_id:
-            Product.objects.create(name=data['name'],
-                                   description=data['description'],
-                                   category=data['category'],
-                                   product_availability=data['product_availability'],
-                                   price= data['price'],
-                                   product_orders= product_order
-                                   )
-        return product_order
+# class BucketSerializer(serializers.ModelSerializer):
+#     product_id = ProductSerializer()
+#
+#     class Meta:
+#         model = ProductOrder
+#         fields = ['id', 'units', 'product_id', 'order_id']
+#         read_only_fields = ['order_id']
+#
+#     def create(self, validated_data):
+#         print(validated_data)
+#         product_id = validated_data.pop('product_id')
+#         product_order = ProductOrder.objects.create(**validated_data)
+#         for data in product_id:
+#             Product.objects.create(name=data['name'],
+#                                    description=data['description'],
+#                                    category=data['category'],
+#                                    product_availability=data['product_availability'],
+#                                    price= data['price'],
+#                                    product_orders= product_order
+#                                    )
+#         return product_order
